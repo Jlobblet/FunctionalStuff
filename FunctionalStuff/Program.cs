@@ -14,8 +14,11 @@ namespace FunctionalStuff
         {
             var contentPackage =
                 new ContentPackage("cp.xml");
-            
-            Console.WriteLine("hi");
+
+            foreach ((string key, FileType value) in contentPackage.Files)
+            {
+                Console.WriteLine($"{key} : {value}");
+            }
         }
     }
 }
