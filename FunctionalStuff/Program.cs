@@ -9,10 +9,10 @@ namespace FunctionalStuff
         {
             if (den == 0)
             {
-                return new None<int>();
+                return None<int>.Create();
             }
 
-            return new Some<int>(num / den);
+            return Some<int>.Create(num / den);
         }
 
         static void Main(string[] args)

@@ -4,9 +4,14 @@ namespace FunctionalStuff.Option
     {
         public readonly T Value;
         
-        public Some(T value)
+        protected Some(T value)
         {
             Value = value;
+        }
+
+        public static Option<T> Create(T value)
+        {
+            return new Some<T>(value);
         }
     }
 }

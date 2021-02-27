@@ -4,12 +4,16 @@ namespace FunctionalStuff.Option
 {
     public class Option<T>
     {
+        protected Option()
+        {
+        }
+
         public Option<TOut> Map<TOut>(Func<T, TOut> func)
         {
             return this switch
                    {
-                       None<T> => new None<TOut>(),
-                       Some<T> s => new Some<TOut>(func(s.Value)),
+                       None<T> => None<TOut>.Create(),
+                       Some<T> s => Some<TOut>.Create(func(s.Value)),
                        _ => throw new ArgumentOutOfRangeException()
                    };
         }
@@ -18,7 +22,7 @@ namespace FunctionalStuff.Option
         {
             return this switch
                    {
-                       None<T> => new None<TOut>(),
+                       None<T> => None<TOut>.Create(),
                        Some<T> s => func(s.Value),
                        _ => throw new ArgumentOutOfRangeException()
                    };
@@ -48,8 +52,8 @@ namespace FunctionalStuff.Option
         {
             return input switch
                    {
-                       null => new None<T>(),
-                       { } some => new Some<T>(some),
+                       null => None<T>.Create(),
+                       { } some => Some<T>.Create(some)
                    };
         }
 
@@ -57,6 +61,5 @@ namespace FunctionalStuff.Option
         {
             return option is None<T>;
         }
-
     }
 }
