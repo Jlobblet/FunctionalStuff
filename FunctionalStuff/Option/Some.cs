@@ -1,10 +1,10 @@
 namespace FunctionalStuff.Option
 {
-    public class Some<T> : Option<T>
+    public sealed class Some<T> : Option<T>
     {
         public readonly T Value;
-        
-        protected Some(T value)
+
+        private Some(T value)
         {
             Value = value;
         }

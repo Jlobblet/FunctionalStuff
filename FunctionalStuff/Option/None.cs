@@ -1,8 +1,8 @@
 namespace FunctionalStuff.Option
 {
-    public class None<T> : Option<T>
+    public sealed class None<T> : Option<T>
     {
-        protected None()
+        private None()
         {
         }
 
