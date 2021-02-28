@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace FunctionalStuff.Option
 {
-    public class Option<T>
+    public class Option<T> : IFunctor<T>
     {
         protected Option()
         {
@@ -118,16 +118,16 @@ namespace FunctionalStuff.Option
             if (this is Some<T> s)
                 action(s.Value);
         }
-        
-        public Option<TOut> Map<TOut>(Func<T, TOut> func)
-        {
-            return this switch
-                   {
-                       None<T> => Option<TOut>.None(),
-                       Some<T> s => Option<TOut>.Some(func(s.Value)),
-                       _ => throw new ArgumentOutOfRangeException()
-                   };
-        }
+
+        IFunctor<TOut> IFunctor<T>.Map<TOut>(Func<T, TOut> mapping) => Map(mapping);
+
+        public Option<TOut> Map<TOut>(Func<T, TOut> mapping) =>
+            this switch
+            {
+                None<T> => Option<TOut>.None(),
+                Some<T> s => Option<TOut>.Some(mapping(s.Value)),
+                _ => throw new ArgumentOutOfRangeException()
+            };
 
         public Option<TOut> Map2<T2, TOut>(Func<T, T2, TOut> mapping, Option<T2> other)
         {
