@@ -15,24 +15,15 @@ namespace ContentPackages
 
         public ContentPackage(string filelistPath)
         {
-            static Option<FileType> ValueSelector(XElement xe)
-            {
-                if (!Enum.TryParse(xe.Name.LocalName, true, out FileType ft))
-                    return Option<FileType>.None();
-                return Option<FileType>.Some(ft);
-            }
+            static Option<FileType> ValueSelector(XElement xe) =>
+                !Enum.TryParse(xe.Name.LocalName, true, out FileType ft)
+                    ? Option<FileType>.None()
+                    : Option<FileType>.Some(ft);
 
-            static Option<string> KeySelector(XElement xe)
-            {
-                var attribute =
-                    xe.Attribute("file");
-                if (attribute is null)
-                    return Option<string>.None();
-                var value = attribute.Value;
-                if (string.IsNullOrWhiteSpace(value))
-                    return Option<string>.None();
-                return Option<string>.Some(value);
-            }
+            static Option<string> KeySelector(XElement xe) =>
+                Option<XAttribute>.FromNullable(xe.Attribute("file"))
+                                  .Map(a => a.Value)
+                                  .Filter(string.IsNullOrWhiteSpace);
 
             FilelistPath = filelistPath;
             Files = Option<XElement>.FromNullable(XDocument.Load(filelistPath).Root)
