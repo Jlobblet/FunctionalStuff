@@ -18,6 +18,14 @@ namespace FunctionalStuff.Option
                 { } some => Some(some),
             };
 
+        public override string ToString() =>
+            this switch
+            {
+                None<T>   => "None",
+                Some<T> s => $"Some {s.Value.ToString()}",
+                var _     => throw new ArgumentOutOfRangeException(),
+            };
+
         public Option<TOut> Bind<TOut>(Func<T, Option<TOut>> func) =>
             this switch
             {
