@@ -5,20 +5,15 @@ namespace FunctionalStuff
 {
     public static class Program
     {
-        private static Option<int> TryDivide(int num, int den)
-        {
-            return den == 0 ? Option<int>.None() : Option<int>.Some(num / den);
-        }
+        private static Option<int> TryDivide(int num, int den) =>
+            den == 0 ? Option<int>.None() : Option<int>.Some(num / den);
 
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             var contentPackage =
                 new ContentPackage("cp.xml");
 
-            foreach ((string key, FileType value) in contentPackage.Files)
-            {
-                Console.WriteLine($"{key} : {value}");
-            }
+            foreach ((var key, var value) in contentPackage.Files) Console.WriteLine($"{key} : {value}");
         }
     }
 }

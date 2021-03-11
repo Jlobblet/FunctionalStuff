@@ -1,5 +1,3 @@
-using System.Collections.Immutable;
-
 namespace FunctionalStuff
 {
     public class ModContentPackage : ContentPackage
@@ -7,7 +5,7 @@ namespace FunctionalStuff
         public ModContentPackage(string filelistPath) : base(filelistPath)
         {
         }
-        
+
         public ModContentPackage AddFile(string filepath, FileType fileType)
         {
             Files = Files.Add(filepath, fileType);
@@ -20,6 +18,7 @@ namespace FunctionalStuff
             return this;
         }
 
-        public ModContentPackage EditFileType(string filepath, FileType fileType) => RemoveFile(filepath).AddFile(filepath, fileType);
+        public ModContentPackage EditFileType(string filepath, FileType fileType) =>
+            RemoveFile(filepath).AddFile(filepath, fileType);
     }
 }

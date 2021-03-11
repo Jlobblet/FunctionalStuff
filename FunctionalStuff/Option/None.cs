@@ -6,9 +6,6 @@ namespace FunctionalStuff.Option
         {
         }
 
-        public static Option<T> Create()
-        {
-            return new None<T>();
-        }
+        public static Option<T> Create() => new None<T>();
     }
 }
