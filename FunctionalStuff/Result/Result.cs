@@ -2,7 +2,7 @@ using System;
 
 namespace FunctionalStuff.Result
 {
-    public class Result<T, TErr>
+    public abstract class Result<T, TErr>
     {
         public static Result<T, TErr> Ok(T value) => new Ok<T, TErr>(value);
 

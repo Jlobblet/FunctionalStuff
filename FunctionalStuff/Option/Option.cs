@@ -3,12 +3,8 @@ using System.Collections.Generic;
 
 namespace FunctionalStuff.Option
 {
-    public class Option<T> : IFunctor<T>
+    public abstract class Option<T> : IFunctor<T>
     {
-        protected Option()
-        {
-        }
-
         IFunctor<TOut> IFunctor<T>.Map<TOut>(Func<T, TOut> mapping) => Map(mapping);
 
         public static Option<T> Some(T value) => Some<T>.Create(value);
