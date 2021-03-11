@@ -1,4 +1,4 @@
-namespace FunctionalStuff
+namespace ContentPackages
 {
     public class ModContentPackage : ContentPackage
     {

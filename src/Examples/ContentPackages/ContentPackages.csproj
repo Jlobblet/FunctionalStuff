@@ -11,4 +11,8 @@
       </None>
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\..\FunctionalStuff\FunctionalStuff.csproj" />
+    </ItemGroup>
+
 </Project>
