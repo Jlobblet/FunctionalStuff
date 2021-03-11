@@ -9,6 +9,7 @@ namespace ContentPackages
             var contentPackage =
                 new ContentPackage("cp.xml");
 
-            foreach (var (key, value) in contentPackage.Files) Console.WriteLine($"{key} : {value}");        }
+            foreach (var (key, value) in contentPackage.Files) Console.WriteLine($"{key} : {value}");
+        }
     }
 }

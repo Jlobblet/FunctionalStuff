@@ -24,11 +24,9 @@ namespace ContentPackages
         {
             Option<ImmutableDictionary<TKey, TValue>.Builder> Folder(
                 Option<ImmutableDictionary<TKey, TValue>.Builder> builder,
-                TSource element)
-            {
-                return builder.Bind(b =>
-                                        keySelector(element).Map2((k, v) => Add(b, k, v), valueSelector(element)));
-            }
+                TSource element) =>
+                builder.Bind(b =>
+                                 keySelector(element).Map2((k, v) => Add(b, k, v), valueSelector(element)));
 
             var builder =
                 Option<ImmutableDictionary<TKey, TValue>.Builder>.Some(ImmutableDictionary
@@ -43,11 +41,9 @@ namespace ContentPackages
         {
             Option<ImmutableDictionary<TKey, TValue>.Builder> Folder(
                 Option<ImmutableDictionary<TKey, TValue>.Builder> builder,
-                TSource element)
-            {
-                return builder.Bind(b =>
-                                        valueSelector(element).Map(v => Add(b, keySelector(element), v)));
-            }
+                TSource element) =>
+                builder.Bind(b =>
+                                 valueSelector(element).Map(v => Add(b, keySelector(element), v)));
 
             var builder =
                 Option<ImmutableDictionary<TKey, TValue>.Builder>.Some(ImmutableDictionary
@@ -62,11 +58,9 @@ namespace ContentPackages
         {
             Option<ImmutableDictionary<TKey, TValue>.Builder> Folder(
                 Option<ImmutableDictionary<TKey, TValue>.Builder> builder,
-                TSource element)
-            {
-                return builder.Bind(b =>
-                                        keySelector(element).Map(k => Add(b, k, valueSelector(element))));
-            }
+                TSource element) =>
+                builder.Bind(b =>
+                                 keySelector(element).Map(k => Add(b, k, valueSelector(element))));
 
             var builder =
                 Option<ImmutableDictionary<TKey, TValue>.Builder>.Some(ImmutableDictionary
