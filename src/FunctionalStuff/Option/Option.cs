@@ -31,7 +31,7 @@ namespace FunctionalStuff.Option
             {
                 None<T>   => Option<TOut>.None(),
                 Some<T> s => func(s.Value),
-                _         => throw new ArgumentOutOfRangeException(),
+                var _     => throw new ArgumentOutOfRangeException(),
             };
 
         public bool Contains(T value) => this is Some<T> s && s.Value.Equals(value);
@@ -43,7 +43,7 @@ namespace FunctionalStuff.Option
             {
                 None<T>   => def,
                 Some<T> s => s.Value,
-                _         => throw new ArgumentException(),
+                var _     => throw new ArgumentOutOfRangeException(),
             };
 
         public T DefaultWith(Func<T> defThunk) =>
@@ -51,7 +51,7 @@ namespace FunctionalStuff.Option
             {
                 Some<T> s => s.Value,
                 None<T>   => defThunk(),
-                _         => throw new ArgumentException(),
+                var _     => throw new ArgumentOutOfRangeException(),
             };
 
         public bool Exists(Func<T, bool> predicate) => this is Some<T> s && predicate(s.Value);
@@ -61,7 +61,7 @@ namespace FunctionalStuff.Option
             {
                 None<T> n => n,
                 Some<T> s => predicate(s.Value) ? s : None(),
-                _         => throw new ArgumentException(),
+                var _     => throw new ArgumentOutOfRangeException(),
             };
 
         public TOut Fold<TOut>(TOut state, Func<TOut, T, TOut> folder) =>
@@ -69,8 +69,7 @@ namespace FunctionalStuff.Option
             {
                 None<T>   => state,
                 Some<T> s => folder(state, s.Value),
-                _ => throw new
-                    ArgumentOutOfRangeException(),
+                var _     => throw new ArgumentOutOfRangeException(),
             };
 
         public TOut FoldBack<TOut>(Func<T, TOut, TOut> folder, TOut state) =>
@@ -78,7 +77,7 @@ namespace FunctionalStuff.Option
             {
                 None<T>   => state,
                 Some<T> s => folder(s.Value, state),
-                _         => throw new ArgumentException(),
+                var _     => throw new ArgumentException(),
             };
 
         public bool IsNone() => this is None<T>;
@@ -96,14 +95,14 @@ namespace FunctionalStuff.Option
             {
                 None<T>   => Option<TOut>.None(),
                 Some<T> s => Option<TOut>.Some(mapping(s.Value)),
-                _         => throw new ArgumentOutOfRangeException(),
+                var _     => throw new ArgumentOutOfRangeException(),
             };
 
         public Option<TOut> Map2<T2, TOut>(Func<T, T2, TOut> mapping, Option<T2> other) =>
             (this, other) switch
             {
                 (Some<T> s1, Some<T2> s2) => Option<TOut>.Some(mapping(s1.Value, s2.Value)),
-                _                         => Option<TOut>.None(),
+                var _                     => Option<TOut>.None(),
             };
 
         public Option<TOut> Map3<T2, T3, TOut>(Func<T, T2, T3, TOut> mapping, Option<T2> other1, Option<T3> other2) =>
@@ -111,7 +110,7 @@ namespace FunctionalStuff.Option
             {
                 (Some<T> s1, Some<T2> s2, Some<T3> s3) =>
                     Option<TOut>.Some(mapping(s1.Value, s2.Value, s3.Value)),
-                _ => Option<TOut>.None(),
+                var _ => Option<TOut>.None(),
             };
 
         public Option<T> OrElse(Option<T> ifNone) => IsNone() ? ifNone : this;
@@ -136,7 +135,7 @@ namespace FunctionalStuff.Option
             this switch
             {
                 Some<T> s => s.Value,
-                _         => throw exception,
+                var _     => throw exception,
             };
     }
 }
