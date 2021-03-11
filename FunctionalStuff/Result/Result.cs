@@ -1,5 +1,4 @@
 using System;
-using System.Data.Common;
 
 namespace FunctionalStuff.Result
 {
@@ -9,18 +8,23 @@ namespace FunctionalStuff.Result
 
         public static Result<T, TErr> Error(TErr value) => Error<T, TErr>.Create(value);
 
-        public Result<TOut, TErr> Map<TOut>(Func<T, TOut> mapping) => this switch
-                                                                      {
-                                                                          Error<T, TErr> e => Result<TOut, TErr>.Error(e.Value),
-                                                                          Ok<T, TErr> o => Result<TOut, TErr>.Ok(mapping(o.Value)),
-                                                                          var _ => throw new ArgumentOutOfRangeException()
-                                                                      };
+        public Result<TOut, TErr> Map<TOut>(Func<T, TOut> mapping) =>
+            this switch
+            {
+                Error<T, TErr> e => Result<TOut, TErr>.Error(
+                    e.Value),
+                Ok<T, TErr> o => Result<TOut, TErr>.Ok(
+                    mapping(o.Value)),
+                var _ => throw
+                    new ArgumentOutOfRangeException(),
+            };
 
-        public Result<TOut, TErr> Bind<TOut>(Func<T, Result<TOut, TErr>> binder) => this switch
+        public Result<TOut, TErr> Bind<TOut>(Func<T, Result<TOut, TErr>> binder) =>
+            this switch
             {
                 Error<T, TErr> e => Result<TOut, TErr>.Error(e.Value),
                 Ok<T, TErr> o    => binder(o.Value),
-                var _            => throw new ArgumentOutOfRangeException()
+                var _            => throw new ArgumentOutOfRangeException(),
             };
     }
 }
