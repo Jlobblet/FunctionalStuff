@@ -4,6 +4,8 @@ namespace FunctionalStuff.Result
     {
         public readonly T Value;
 
-        public Ok(T value) => Value = value;
+        private Ok(T value) => Value = value;
+
+        public static Result<T, TErr> Create(T value) => new Ok<T, TErr>(value);
     }
 }

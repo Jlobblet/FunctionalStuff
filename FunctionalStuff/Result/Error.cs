@@ -4,6 +4,8 @@ namespace FunctionalStuff.Result
     {
         public readonly TErr Value;
 
-        public Error(TErr value) => Value = value;
+        private Error(TErr value) => Value = value;
+
+        public static Result<T, TErr> Create(TErr value) => new Error<T, TErr>(value);
     }
 }
