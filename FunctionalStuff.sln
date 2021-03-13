@@ -6,6 +6,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContentPackages", "src\Exam
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Examples", "Examples", "{C50F65F4-3009-4831-9692-98231AE7780B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Parsers", "src\Examples\Parsers\Parsers\Parsers.csproj", "{D850A3DD-D203-429D-AEA9-91C8D1E8D592}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -20,8 +22,13 @@ Global
 		{D8A7AF5B-259E-438E-8A35-B62D4BB13447}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D8A7AF5B-259E-438E-8A35-B62D4BB13447}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D8A7AF5B-259E-438E-8A35-B62D4BB13447}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D850A3DD-D203-429D-AEA9-91C8D1E8D592}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D850A3DD-D203-429D-AEA9-91C8D1E8D592}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D850A3DD-D203-429D-AEA9-91C8D1E8D592}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D850A3DD-D203-429D-AEA9-91C8D1E8D592}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{D8A7AF5B-259E-438E-8A35-B62D4BB13447} = {C50F65F4-3009-4831-9692-98231AE7780B}
+		{D850A3DD-D203-429D-AEA9-91C8D1E8D592} = {C50F65F4-3009-4831-9692-98231AE7780B}
 	EndGlobalSection
 EndGlobal
