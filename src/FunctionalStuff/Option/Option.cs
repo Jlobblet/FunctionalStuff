@@ -117,19 +117,9 @@ namespace FunctionalStuff.Option
 
         public Option<T> OrElseWith(Func<Option<T>> ifNoneThunk) => IsNone() ? ifNoneThunk() : this;
 
-        public T[] ToArray()
-        {
-            if (this is Some<T> s) return new[] {s.Value};
+        public T[] ToArray() => this is Some<T> s ? new[] {s.Value} : Array.Empty<T>();
 
-            return Array.Empty<T>();
-        }
-
-        public List<T> ToList()
-        {
-            if (this is Some<T> s) return new List<T> {s.Value};
-
-            return new List<T>();
-        }
+        public List<T> ToList() => this is Some<T> s ? new List<T> {s.Value} : new List<T>();
 
         public T UnwrapOr(Exception exception) =>
             this switch
