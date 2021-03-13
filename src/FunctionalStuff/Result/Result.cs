@@ -8,6 +8,14 @@ namespace FunctionalStuff.Result
 
         public static Result<T, TErr> Error(TErr value) => Error<T, TErr>.Create(value);
 
+        public override string ToString() =>
+            this switch
+            {
+                Ok<T, TErr> o    => $"Ok({o.Value.ToString()})",
+                Error<T, TErr> e => $"Error({e.Value.ToString()})",
+                _                => throw new ArgumentOutOfRangeException(),
+            };
+
         public Result<TOut, TErr> Map<TOut>(Func<T, TOut> mapping) =>
             this switch
             {
